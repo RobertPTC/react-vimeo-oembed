@@ -1,0 +1,48 @@
+{
+  "name": "react-vimeo-oembed",
+  "version": "1.0.0",
+  "description": "React component to easily embed Vimeo videos in your application",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobertPTC/react-vimeo-oembed.git"
+  },
+  "keywords": [
+    "React",
+    "vimeo",
+    "video",
+    "player",
+    "video",
+    "oembed",
+    "react",
+    "react-component"
+  ],
+  "author": "Robert P. Cunningham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RobertPTC/react-vimeo-oembed/issues"
+  },
+  "babel": {
+    "presets": [
+      "react-app",
+      "env"
+    ]
+  },
+  "homepage": "https://github.com/RobertPTC/react-vimeo-oembed#readme",
+  "devDependencies": {
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.3",
+    "react-test-renderer": "^16.3.0"
+  },
+  "dependencies": {
+    "babel-preset-react-app": "^3.1.1",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "webpack-dev-server": "^3.1.1"
+  }
+}
