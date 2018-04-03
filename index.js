@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 let embedVimeoVideoCallbackNumber = 0;
 
-export class VimeoOembedPlayer extends React.PureComponent {
+export class ReactVimeoOembed extends React.PureComponent {
 
   constructor() {
     super();
@@ -17,7 +17,7 @@ export class VimeoOembedPlayer extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { options, videoId, dimensions } = this.props;
+    const { options, videoId } = this.props;
     this.callbackName = `embedVimeoVideoCallback${embedVimeoVideoCallbackNumber}`;
     window[this.callbackName] = (video) => {
       this.setState({
@@ -36,10 +36,9 @@ export class VimeoOembedPlayer extends React.PureComponent {
     const previousOptionsKeys = Object.keys(options);
     let changedOptions = nextPropsOptionKeys.filter(key => nextProps.options[key] !== options[key]);
     const callbackIndex = changedOptions.indexOf('callback');
-    const errorCallbackIndex = changedOptions.indexOf('errorCallback');
     const videoIdChanged = videoId !== nextProps.videoId;
     if (callbackIndex > -1) {
-      changedOptions.splice(changedOptions.indexOf('callback'), 1);
+      changedOptions.splice(callbackIndex, 1);
     }
     if (changedOptions.length || videoIdChanged) {
       if (this.script) {
@@ -52,7 +51,7 @@ export class VimeoOembedPlayer extends React.PureComponent {
   createEmbedScript(props) {
     if (props.videoId) {
       const script = document.createElement('script');
-      const { options, errorCallback } = props;
+      const { options, errorCallback, scriptLoadCallback } = props;
       const optionsKeys = Object.keys(options);
       let url = `https://www.vimeo.com/api/oembed.json?url=http://www.vimeo.com/${props.videoId}&callback=${this.callbackName}`;
       if (options.width > options.maxwidth) {
@@ -63,16 +62,23 @@ export class VimeoOembedPlayer extends React.PureComponent {
       }
       optionsKeys.forEach((key, idx) => {
         const isLast = idx === optionsKeys.length - 1;
-        if (key !== 'callback' && options[key]) {
+        if (key !== 'callback') {
           url = `${url}&${key}=${options[key]}`;
         }
       });
       script.setAttribute('type', 'text/javascript');
       script.setAttribute('src', url);
       script.addEventListener('error', (e) => {
-        errorCallback(e);
+        if (errorCallback) {
+          errorCallback(e);
+        }
       });
-      document.getElementsByTagName('head').item(0).appendChild(script);
+      script.addEventListener('load', (e) => {
+        if (scriptLoadCallback) {
+          scriptLoadCallback(e);
+        }
+      });
+      document.body.appendChild(script);
       this.script = script;
     }
   }
@@ -89,7 +95,7 @@ export class VimeoOembedPlayer extends React.PureComponent {
   }
 }
 
-VimeoOembedPlayer.defaultProps = {
+ReactVimeoOembed.defaultProps = {
   options: {
     api: false,
     autopause: true,
@@ -104,13 +110,13 @@ VimeoOembedPlayer.defaultProps = {
     xhtml: false
   },
   videoId: '',
-  LoadingComponent: '',
+  LoadingComponent: () => null,
   errorCallback: () => null,
   className: '',
   style: {}
 };
 
-VimeoOembedPlayer.propTypes = {
+ReactVimeoOembed.propTypes = {
   videoId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   LoadingComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   options: PropTypes.shape({
@@ -130,4 +136,4 @@ VimeoOembedPlayer.propTypes = {
   style: PropTypes.object
 };
 
-export default VimeoOembedPlayer;
+export default ReactVimeoOembed;

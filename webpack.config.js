@@ -18,10 +18,10 @@ const extensions = ['.js', '.jsx', '.node'];
 //NOTE super simple webpack config
 module.exports = [
   {
-    entry: './src/index.js',
+    entry: './examples/index.js',
     output: {
-      path: path.resolve(process.cwd(), './build'),
-      filename: 'index.js'
+      path: __dirname,
+      filename: 'bundle.js'
     },
     resolve: {
 		  extensions
