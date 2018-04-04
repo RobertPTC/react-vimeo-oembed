@@ -51,7 +51,7 @@ Open your browser and go to [http://localhost:8080/](http://localhost:8080/)
 | Name                      | Type        | Description                                                                                   |
 | ---                       | ---         | ---                                                                                           |
 | `videoId`                 | `Number`    | ID of the video you would like to show.                                                       |
-| `options`                 | `Object`    | Options that determine how the video shows. Defaults to those found [here](https://developer.vimeo.com/apis/oembed)                                                                                           |
+| `options`                 | `Object`    | Options that determine how the video shows. Defaults to those found [here](https://developer.vimeo.com/apis/oembed).                                                                                           |
 | `LoadingComponent`        | `Element`   | Loader element. Shows as the Vimeo script tag is loading.                                     |
 | `errorCallback`           | `Function`  | Function called if something goes wrong loading the Vimeo Oembed Player. Supplied with error object as argument.                                                            |
 | `scriptLoadCallback`      | `Function`  | Function called when Vimeo Oembed Player script has loaded. Supplied with the video JSON response as argument.                                                                  |
