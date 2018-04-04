@@ -23,13 +23,11 @@ class Example extends React.Component {
 
   componentDidMount() {
     const debouncedResize = debounce(() => {
-      console.log('debounced');
       this.windowResized();
     }, 500);
     window.addEventListener('resize', debouncedResize);
   }
   windowResized() {
-    console.log('containerDivRef ', this.containerDivRef.offsetWidth);
     this.setState({
       width: this.containerDivRef.offsetWidth
     });

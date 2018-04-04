@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "demo": "webpack-dev-server --mode development"
+    "demo": "webpack-dev-server --mode development",
+    "build": "webpack index=./index.js --output-path='./dist' --output-filename=[name].[hash].bundle.js"
   },
   "repository": {
     "type": "git",

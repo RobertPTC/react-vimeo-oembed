@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// TODO: open source: support function as children, render as prop
-
 let embedVimeoVideoCallbackNumber = 0;
 
 export class ReactVimeoOembed extends React.PureComponent {
@@ -90,7 +88,7 @@ export class ReactVimeoOembed extends React.PureComponent {
       return LoadingComponent ? <LoadingComponent /> : null;
     }
     return (
-      <div className={className} style={style} dangerouslySetInnerHTML={{__html: videoEmbed}} />
+      <div className={className} style={style} {...props} dangerouslySetInnerHTML={{__html: videoEmbed}} />
     );
   }
 }
