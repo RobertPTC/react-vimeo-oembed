@@ -59,7 +59,9 @@ export class ReactVimeoOembed extends React.PureComponent {
         options.height = options.maxheight;
       }
       optionsKeys.forEach((key, idx) => {
-        url = `${url}&${key}=${options[key]}`;
+        if (key !== 'callback') {
+          url = `${url}&${key}=${options[key]}`;
+        }
       });
       script.setAttribute('type', 'text/javascript');
       script.setAttribute('src', url);

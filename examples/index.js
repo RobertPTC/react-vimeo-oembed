@@ -46,6 +46,7 @@ class Example extends React.Component {
         </pre>
         <ReactVimeoOembed
           videoId={258238541}
+          scriptLoadCallback={(video) => null}
           options={{
             width: 1000,
             maxwidth: 1020,
@@ -53,30 +54,29 @@ class Example extends React.Component {
             portrait: false,
             byline: false,
             autoplay: true,
-            callback: (video) => null,
             maxheight: 500
           }}
         />
         <pre>
           <code>
-            Vimeo oembed options: {'{ width: 1000, autoplay: true, maxwidth: 1020, title: false, portrait: false, byline: false, callback: (video) => null, maxheight: 500 }'}
+            Vimeo oembed options: {'{ width: 1000, autoplay: true, maxwidth: 1020, title: false, portrait: false, byline: false, maxheight: 500 }'}
           </code>
         </pre>
         <ReactVimeoOembed
           videoId={258238541}
+          scriptLoadCallback={(video) => console.log('video ', video)}
           options={{
             width,
             maxwidth: 1020,
             title: false,
             portrait: false,
             byline: false,
-            callback: (video) => console.log('video ', video),
             maxheight: 500
           }}
         />
         <pre>
           <code>
-            Vimeo oembed options: {'{ width: this.containerDivRef.offsetWidth, maxwidth: 1020, title: false, portrait: false, byline: false, callback: (video) => console.log("video ", video), maxheight: 500 }'}
+            Vimeo oembed options: {'{ width: this.containerDivRef.offsetWidth, maxwidth: 1020, title: false, portrait: false, byline: false, maxheight: 500 }'}
           </code>
         </pre>
         <ReactVimeoOembed
@@ -87,13 +87,12 @@ class Example extends React.Component {
             title: false,
             portrait: false,
             byline: false,
-            callback: (video) => console.log('video ', video),
             maxheight: 500
           }}
         />
         <pre>
           <code>
-            Vimeo oembed options: {'{ height: 500, maxwidth: 1020, title: false, portrait: false, byline: false, callback: (video) => console.log("video ", video), maxheight: 500 }'}
+            Vimeo oembed options: {'{ height: 500, maxwidth: 1020, title: false, portrait: false, byline: false, maxheight: 500 }'}
           </code>
         </pre>
       </div>
