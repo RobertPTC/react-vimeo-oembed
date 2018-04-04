@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js test
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js test -u
 
 PATH: 
   /Users/robertcunningham/Desktop/google-cloud-sdk/bin:/Users/robertcunningham/.rvm/gems/ruby-2.3.1/bin:/Users/robertcunningham/.rvm/gems/ruby-2.3.1@global/bin:/Users/robertcunningham/.rvm/rubies/ruby-2.3.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/robertcunningham/Library/Android/sdk/tools:/Users/robertcunningham/Library/Android/sdk/platform-tools:/Users/robertcunningham/.rvm/bin
@@ -21,7 +21,8 @@ npm manifest:
     "main": "index.js",
     "scripts": {
       "test": "jest",
-      "demo": "webpack-dev-server --mode development"
+      "demo": "webpack-dev-server --mode development",
+      "build": "webpack index=./index.js --output-path='./dist' --output-filename=[name].[hash].bundle.js"
     },
     "repository": {
       "type": "git",
@@ -37,7 +38,11 @@ npm manifest:
       "react",
       "react-component"
     ],
-    "author": "Robert P. Cunningham",
+    "author": {
+      "name": "Robert P. Cunningham",
+      "email": "rptc3000@gmail.com",
+      "url": "lazarustechnology.org"
+    },
     "license": "MIT",
     "bugs": {
       "url": "https://github.com/RobertPTC/react-vimeo-oembed/issues"
@@ -53,21 +58,23 @@ npm manifest:
       "babel-jest": "^22.4.3",
       "babel-preset-env": "^1.6.1",
       "jest": "^22.4.3",
-      "react-test-renderer": "^16.3.0"
-    },
-    "dependencies": {
+      "react-test-renderer": "^16.3.0",
       "babel-loader": "^7.1.4",
       "babel-preset-react-app": "^3.1.1",
       "css-loader": "^0.28.11",
       "enzyme": "^3.3.0",
       "enzyme-adapter-react-16": "^1.1.1",
       "extract-text-webpack-plugin": "^4.0.0-beta.0",
-      "prop-types": "^15.6.1",
-      "react": "^16.3.0",
-      "react-dom": "^16.3.0",
       "webpack": "^4.4.1",
       "webpack-cli": "^2.0.13",
       "webpack-dev-server": "^3.1.1"
+    },
+    "dependencies": {
+      "prop-types": "^15.6.1"
+    },
+    "peerDependencies": {
+      "react": "^16.3.0",
+      "react-dom": "^16.3.0",
     }
   }
 
@@ -7792,16 +7799,10 @@ Lockfile:
       yeoman-environment "^2.0.5"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 1
-  Command: sh
-  Arguments: -c jest
-  Directory: /Users/robertcunningham/Projects/react-vimeo-oembed
-  Output:
-  
-      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:30281:17)
-      at ChildProcess.emit (events.js:127:13)
-      at maybeClose (internal/child_process.js:933:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
+  SyntaxError: /Users/robertcunningham/Projects/react-vimeo-oembed/package.json: Unexpected token } in JSON at position 1572
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:1036:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:98:30)
+      at /usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:109:13
+      at <anonymous>
