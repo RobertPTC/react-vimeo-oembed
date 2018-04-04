@@ -14,7 +14,6 @@ ShallowWrapper {
         "autopause": true,
         "autoplay": false,
         "byline": true,
-        "callback": [Function],
         "color": "",
         "loop": false,
         "player_id": "",
@@ -23,6 +22,7 @@ ShallowWrapper {
         "xhtml": false,
       }
     }
+    scriptLoadCallback={[Function]}
     style={Object {}}
     videoId=""
   />,

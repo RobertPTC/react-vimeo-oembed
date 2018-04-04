@@ -22,7 +22,11 @@
     "react",
     "react-component"
   ],
-  "author": "Robert P. Cunningham",
+  "author": {
+    "name": "Robert P. Cunningham",
+    "email": "rptc3000@gmail.com",
+    "url": "lazarustechnology.org"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/RobertPTC/react-vimeo-oembed/issues"
@@ -38,20 +42,22 @@
     "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.6.1",
     "jest": "^22.4.3",
-    "react-test-renderer": "^16.3.0"
-  },
-  "dependencies": {
+    "react-test-renderer": "^16.3.0",
     "babel-loader": "^7.1.4",
     "babel-preset-react-app": "^3.1.1",
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "prop-types": "^15.6.1",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1"
   }
 }

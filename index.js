@@ -15,14 +15,14 @@ export class ReactVimeoOembed extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { options, videoId } = this.props;
+    const { options, videoId, scriptLoadCallback } = this.props;
     this.callbackName = `embedVimeoVideoCallback${embedVimeoVideoCallbackNumber}`;
     window[this.callbackName] = (video) => {
       this.setState({
         videoEmbed: video.html,
         videoLoading: false
       });
-      options.callback(video);
+      scriptLoadCallback(video);
     };
     this.createEmbedScript(this.props);
     embedVimeoVideoCallbackNumber += 1;
@@ -49,7 +49,7 @@ export class ReactVimeoOembed extends React.PureComponent {
   createEmbedScript(props) {
     if (props.videoId) {
       const script = document.createElement('script');
-      const { options, errorCallback, scriptLoadCallback } = props;
+      const { options, errorCallback } = props;
       const optionsKeys = Object.keys(options);
       let url = `https://www.vimeo.com/api/oembed.json?url=http://www.vimeo.com/${props.videoId}&callback=${this.callbackName}`;
       if (options.width > options.maxwidth) {
@@ -59,21 +59,13 @@ export class ReactVimeoOembed extends React.PureComponent {
         options.height = options.maxheight;
       }
       optionsKeys.forEach((key, idx) => {
-        const isLast = idx === optionsKeys.length - 1;
-        if (key !== 'callback') {
-          url = `${url}&${key}=${options[key]}`;
-        }
+        url = `${url}&${key}=${options[key]}`;
       });
       script.setAttribute('type', 'text/javascript');
       script.setAttribute('src', url);
       script.addEventListener('error', (e) => {
         if (errorCallback) {
           errorCallback(e);
-        }
-      });
-      script.addEventListener('load', (e) => {
-        if (scriptLoadCallback) {
-          scriptLoadCallback(e);
         }
       });
       document.body.appendChild(script);
@@ -88,7 +80,7 @@ export class ReactVimeoOembed extends React.PureComponent {
       return LoadingComponent ? <LoadingComponent /> : null;
     }
     return (
-      <div className={className} style={style} {...props} dangerouslySetInnerHTML={{__html: videoEmbed}} />
+      <div className={className} style={style} dangerouslySetInnerHTML={{__html: videoEmbed}} />
     );
   }
 }
@@ -99,7 +91,6 @@ ReactVimeoOembed.defaultProps = {
     autopause: true,
     autoplay: false,
     byline: true,
-    callback: () => null,
     color: '',
     loop: false,
     player_id: '',
@@ -110,6 +101,7 @@ ReactVimeoOembed.defaultProps = {
   videoId: '',
   LoadingComponent: () => null,
   errorCallback: () => null,
+  scriptLoadCallback: () => null,
   className: '',
   style: {}
 };
@@ -129,6 +121,7 @@ ReactVimeoOembed.propTypes = {
     title: PropTypes.bool,
     xhtml: PropTypes.bool
   }),
+  scriptLoadCallback: PropTypes.func,
   errorCallback: PropTypes.func,
   className: PropTypes.string,
   style: PropTypes.object
