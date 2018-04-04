@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { ReactVimeoOembed } from '../index.js';
+import { ReactVimeoOembed } from '../lib/index.js';
 
 export const debounce = (fn, wait) => {
   let timeout = null;

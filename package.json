@@ -1,12 +1,13 @@
 {
   "name": "react-vimeo-oembed",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "React component to easily embed Vimeo videos in your application",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "jest",
     "demo": "webpack-dev-server --mode development",
-    "build": "webpack index=./index.js --output-path='./dist' --output-filename=[name].[hash].bundle.js"
+    "build": "babel index.js -d lib",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -40,20 +41,21 @@
   "homepage": "https://github.com/RobertPTC/react-vimeo-oembed#readme",
   "devDependencies": {
     "babel-jest": "^22.4.3",
-    "babel-preset-env": "^1.6.1",
-    "jest": "^22.4.3",
-    "react-test-renderer": "^16.3.0",
     "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react-app": "^3.1.1",
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "jest": "^22.4.3",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-test-renderer": "^16.3.0",
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0"
+    "babel-cli": "^6.26.0"
   },
   "dependencies": {
     "prop-types": "^15.6.1"
