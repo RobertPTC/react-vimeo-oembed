@@ -10,12 +10,7 @@ const rules = [
         }
       ];
 const extensions = ['.js', '.jsx', '.node'];
-//NOTE if we are using eslint rules
-// if (process.env.ENVIRONMENT === 'development') {
-//   rules.push({test: /\.(js|jsx)$/,use:[{loader: 'eslint-loader'}],exclude: [/node_modules/]});
-// }
 
-//NOTE super simple webpack config
 module.exports = [
   {
     entry: './examples/index.js',
